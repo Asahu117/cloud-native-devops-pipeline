@@ -25,3 +25,7 @@ COPY --from=builder /go/bin/product-catalog/ ./
 
 EXPOSE ${PRODUCT_CATALOG_PORT}
 ENTRYPOINT [ "./product-catalog" ]
+
+
+
+
