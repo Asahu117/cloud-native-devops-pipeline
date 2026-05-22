@@ -55,3 +55,10 @@ test/tracetesting/tracetesting-vars.yaml
 *.apk
 
 !src/currency/build
+
+graphify-out/
+
+.graphify_incremental.json
+.codex
+
+AGENTS.md

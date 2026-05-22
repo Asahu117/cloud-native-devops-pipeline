@@ -30,3 +30,5 @@ RUN opentelemetry-bootstrap -a install
 
 EXPOSE ${RECOMMENDATION_PORT}
 ENTRYPOINT [ "opentelemetry-instrument", "python", "recommendation_server.py" ]
+
+
