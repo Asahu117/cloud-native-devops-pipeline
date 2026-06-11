@@ -35,6 +35,13 @@ composer.lock
 .dockerhub.env
 .ghcr.env
 .agents
+.env.arm64
+CHANGELOG.md
+CONTRIBUTING.md
+README.md
+
+
+
 
 src/frontend/cypress/videos
 src/frontend/cypress/screenshots
