@@ -10,5 +10,5 @@ on:
 
 jobs:
   build_images:
-    if: github.repository == 'open-telemetry/opentelemetry-demo'
+    if: github.repository == 'Asahu117/cloud-native-ecommerce-platform'
     uses: ./.github/workflows/component-build-images.yml
