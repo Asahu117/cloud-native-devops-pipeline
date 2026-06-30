@@ -3,6 +3,11 @@ variable "cluster_name" {
   description = "The name of the cluster"
   type        = string
 }
+#Environment
+variable "environment" {
+  description = "Deployment environment. One of: production, testing, staging."
+  type        = string
+}
 #VPC CIDR block
 variable "vpc_cidr" {
   description = "The CIDR block for the VPC"

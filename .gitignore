@@ -67,6 +67,7 @@ graphify-out/
 
 .graphify_incremental.json
 .codex
+.kimchi
 
 AGENTS.md
 #Workspace files

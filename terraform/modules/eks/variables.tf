@@ -3,6 +3,11 @@ variable "cluster_name" {
   description = "Name of the EKS cluster"
   type        = string
 }
+#Environment
+variable "environment" {
+  description = "Deployment environment. One of: production, testing, staging."
+  type        = string
+}
 
 #EKS Node Groups
 variable "node_groups" {

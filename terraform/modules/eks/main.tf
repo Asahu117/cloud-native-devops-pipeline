@@ -4,6 +4,7 @@ resource "aws_iam_role" "eks_cluster_role" {
   assume_role_policy = data.aws_iam_policy_document.eks_cluster_assume_role_policy.json
   tags = {
     Name                                        = "${var.cluster_name}-eks-cluster-role"
+    Environment                                 = var.environment
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
 }
@@ -14,6 +15,7 @@ resource "aws_iam_role" "eks_node_group_role" {
   assume_role_policy = data.aws_iam_policy_document.eks_node_group_assume_role_policy.json
   tags = {
     Name                                        = "${var.cluster_name}-eks-node-group-role"
+    Environment                                 = var.environment
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
 }
@@ -60,7 +62,8 @@ resource "aws_eks_cluster" "eks_cluster" {
   ]
 
   tags = {
-    Name = "${var.cluster_name}-eks-cluster"
+    Name        = "${var.cluster_name}-eks-cluster"
+    Environment = var.environment
   }
 }
 
@@ -86,6 +89,7 @@ resource "aws_eks_node_group" "eks_node_group" {
   aws_iam_role_policy_attachment.ecr_policy]
   tags = {
     Name                                        = "${var.cluster_name}-eks-node-group"
+    Environment                                 = var.environment
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
 }

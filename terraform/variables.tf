@@ -1,3 +1,13 @@
+#Environment
+variable "environment" {
+  description = "Deployment environment. One of: production, testing, staging."
+  type        = string
+  validation {
+    condition     = contains(["production", "testing", "staging"], var.environment)
+    error_message = "environment must be one of: production, testing, staging."
+  }
+}
+
 #AWS Region
 variable "aws_region" {
   description = "The AWS region to deploy resources"

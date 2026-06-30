@@ -25,6 +25,7 @@ module "vpc" {
   public_subnet_cidrs  = var.public_subnet_cidrs
   private_subnet_cidrs = var.private_subnet_cidrs
   availability_zone    = var.availability_zone
+  environment          = var.environment
 
 
 }
@@ -39,6 +40,8 @@ module "eks" {
   private_subnet_ids = module.vpc.private_subnet_ids
 
   node_groups = var.node_groups
+
+  environment = var.environment
 
 }
 

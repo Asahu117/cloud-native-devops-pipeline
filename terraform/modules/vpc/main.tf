@@ -9,6 +9,7 @@ resource "aws_vpc" "vpc" {
 
   tags = {
     Name                                        = "${var.cluster_name}-vpc"
+    Environment                                 = var.environment
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
 }
@@ -21,6 +22,7 @@ resource "aws_subnet" "priv_subnet" {
   availability_zone = var.availability_zone[count.index]
   tags = {
     Name                                        = "${var.cluster_name}-private-subnet"
+    Environment                                 = var.environment
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
 }
@@ -34,6 +36,7 @@ resource "aws_subnet" "pub_subnet" {
   map_public_ip_on_launch = true
   tags = {
     Name                                        = "${var.cluster_name}-public-subnet"
+    Environment                                 = var.environment
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
 }
@@ -43,6 +46,7 @@ resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
   tags = {
     Name                                        = "${var.cluster_name}-igw"
+    Environment                                 = var.environment
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
 }
@@ -56,6 +60,7 @@ resource "aws_route_table" "rt_public_subnet" {
   }
   tags = {
     Name                                        = "${var.cluster_name}-public-route-table"
+    Environment                                 = var.environment
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
 }
@@ -76,7 +81,8 @@ resource "aws_nat_gateway" "nat_gateway" {
   allocation_id = aws_eip.nat[count.index].id
 
   tags = {
-    Name = "${var.cluster_name}-nat-gateway"
+    Name        = "${var.cluster_name}-nat-gateway"
+    Environment = var.environment
   }
 }
 
@@ -89,6 +95,7 @@ resource "aws_route_table" "rt_private_subnet" {
   }
   tags = {
     Name                                        = "${var.cluster_name}-private-route-table"
+    Environment                                 = var.environment
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
 }
@@ -103,6 +110,7 @@ resource "aws_eip" "nat" {
   count = length(var.public_subnet_cidrs)
   tags = {
     Name                                        = "${var.cluster_name}-nat-eip"
+    Environment                                 = var.environment
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"
   }
 }
